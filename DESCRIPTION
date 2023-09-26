@@ -1,0 +1,17 @@
+Package: EC4023
+Title: Tutorials for EC4023
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Lukas",
+           family = "Kuld",
+           role = c("aut", "cre"),
+           email = "lukas.kuld@ul.ie",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Tutorials for quantitative methods at the University of Limerick
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    learnr
