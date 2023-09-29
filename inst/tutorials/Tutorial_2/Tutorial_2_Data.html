@@ -413,7 +413,7 @@ mean(limerick_property_df$price[condition_overall])</code></pre>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
-library(quantsUL)
+library(EC4023)
 knitr::opts_chunk$set(echo = FALSE)
 </script>
  
@@ -447,7 +447,7 @@ output$`tutorial-exercise-vec-1-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "vec-1", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "vec-1", code = "\nnumeric_vector <- c(2,54,5,7)\ncharacter_vector <- c('two', 'flower','tree','2')\n", 
         opts = list(label = "\"vec-1\"", exercise = "TRUE"), 
@@ -489,7 +489,7 @@ output$`tutorial-exercise-vec-1b-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "vec-1b", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "vec-1b", code = "\nnumeric_vector <- c(2,54,5,7)\ncharacter_vector <- c('two', 'flower','tree','2')\n", 
         opts = list(label = "\"vec-1b\"", exercise = "TRUE"), 
@@ -530,7 +530,7 @@ output$`tutorial-exercise-vec-2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "vec-2", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "vec-2", code = "\nnumeric_vector <- c(2,54,5,7)\ncharacter_vector <- c('two', 'flower','tree','2')\n\nnumeric_vector_2 <- c(numeric_vector, 3)\nnumeric_vector_2\n\nc(numeric_vector, character_vector)", 
         opts = list(label = "\"vec-2\"", exercise = "TRUE"), 
@@ -571,7 +571,7 @@ output$`tutorial-exercise-data-frame-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "data-frame", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "data-frame", code = "\nname <- c('Peter', 'Helen', 'Ana', 'Sean', 'Chris', 'Mary')\nage <- c(8,7,9,7,7,8)\nheight <- c(125,133,151,145,140,134)\n\nage_height_df <- data.frame(name, age, height)\n\nage_height_df", 
         opts = list(label = "\"data-frame\"", exercise = "TRUE"), 
@@ -613,7 +613,7 @@ output$`tutorial-exercise-prop-data-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "prop-data", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "prop-data", code = "\n", opts = list(label = "\"prop-data\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
@@ -652,7 +652,7 @@ output$`tutorial-exercise-price-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "price", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "price", code = "limerick_property_df$price\n", 
         opts = list(label = "\"price\"", exercise = "TRUE", eval = "TRUE"), 
@@ -692,7 +692,7 @@ output$`tutorial-exercise-subset-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "subset", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "subset", code = "limerick_property_df[]\n", 
         opts = list(label = "\"subset\"", exercise = "TRUE"), 
@@ -731,7 +731,7 @@ output$`tutorial-exercise-subset2-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "subset2", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "subset2", code = "limerick_property_df[]\n", 
         opts = list(label = "\"subset2\"", exercise = "TRUE"), 
@@ -772,7 +772,7 @@ output$`tutorial-exercise-obs-year-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "obs-year", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "obs-year", code = "\n", opts = list(label = "\"obs-year\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
@@ -812,7 +812,7 @@ output$`tutorial-exercise-true-fruit-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "true-fruit", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "true-fruit", code = "fruits <- c('apple', 'pear', 'orange')\n\nfruits[c(TRUE, FALSE, FALSE)]\nfruits[]\n", 
         opts = list(label = "\"true-fruit\"", exercise = "TRUE"), 
@@ -854,7 +854,7 @@ output$`tutorial-exercise-true-year-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "true-year", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "true-year", code = "\n", opts = list(label = "\"true-year\"", 
         exercise = "TRUE"), engine = "r")), code_check = NULL, 
@@ -894,7 +894,7 @@ output$`tutorial-exercise-subset2020-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "subset2020", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "subset2020", code = "not2020 <- limerick_property_df[,]\nnot2020", 
         opts = list(label = "\"subset2020\"", exercise = "TRUE"), 
@@ -936,7 +936,7 @@ output$`tutorial-exercise-smallPrices-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "smallPrices", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "smallPrices", code = "condition <- limerick_property_df$price ???\nmean(limerick_property_df$year[condition])\n", 
         opts = list(label = "\"smallPrices\"", exercise = "TRUE"), 
@@ -978,7 +978,7 @@ output$`tutorial-exercise-eitherPrices-output` <- renderUI({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::store_exercise_cache(structure(list(label = "eitherPrices", global_setup = structure(c("library(learnr)", 
-"library(quantsUL)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
+"library(EC4023)", "knitr::opts_chunk$set(echo = FALSE)"), chunk_opts = list(
     label = "setup", include = FALSE)), setup = NULL, chunks = list(
     list(label = "eitherPrices", code = "condition1 <- ???\ncondition2 <- ???\ncondition_overall <- condition1 ??? condition2\nmean(limerick_property_df$price[condition_overall])\n", 
         opts = list(label = "\"eitherPrices\"", exercise = "TRUE"), 
@@ -1019,7 +1019,7 @@ learnr:::store_exercise_cache(structure(list(label = "eitherPrices", global_setu
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]}},"value":[{"type":"character","attributes":{},"value":["backports","base","bslib","cachem","checkmate","cli","compiler","datasets","digest","ellipsis","evaluate","fastmap","fontawesome","graphics","grDevices","htmltools","htmlwidgets","httpuv","jquerylib","jsonlite","knitr","later","learnr","lifecycle","magrittr","methods","mime","promises","quantsUL","R6","Rcpp","rlang","rmarkdown","rprojroot","rstudioapi","sass","shiny","stats","tools","utils","withr","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["1.4.1","4.3.1","0.4.2","1.0.7","2.1.0","3.6.1","4.3.1","4.3.1","0.6.31","0.3.2","0.20","1.1.1","0.5.1","4.3.1","4.3.1","0.5.5","1.6.2","1.6.9","0.1.4","1.8.4","1.42","1.3.0","0.11.4.9000","1.0.3","2.0.3","4.3.1","0.12","1.2.0.1","0.0.0.9000","2.5.1","1.0.10","1.1.0","2.21","2.0.3","0.14","0.4.5","1.7.4","4.3.1","4.3.1","4.3.1","2.5.0","0.39","1.8-4","2.3.7"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]}},"value":[{"type":"character","attributes":{},"value":["backports","base","bslib","cachem","checkmate","cli","compiler","datasets","digest","EC4023","ellipsis","evaluate","fastmap","fontawesome","graphics","grDevices","htmltools","htmlwidgets","httpuv","jquerylib","jsonlite","knitr","later","learnr","lifecycle","magrittr","methods","mime","promises","R6","Rcpp","rlang","rmarkdown","rprojroot","rstudioapi","sass","shiny","stats","tools","utils","withr","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["1.4.1","4.3.1","0.4.2","1.0.7","2.1.0","3.6.1","4.3.1","4.3.1","0.6.31","0.0.0.9000","0.3.2","0.20","1.1.1","0.5.1","4.3.1","4.3.1","0.5.5","1.6.2","1.6.9","0.1.4","1.8.4","1.42","1.3.0","0.11.4.9000","1.0.3","2.0.3","4.3.1","0.12","1.2.0.1","2.5.1","1.0.10","1.1.0","2.21","2.0.3","0.14","0.4.5","1.7.4","4.3.1","4.3.1","4.3.1","2.5.0","0.39","1.8-4","2.3.7"]}]}]}
 </script>
 <!--/html_preserve-->
 </div>
