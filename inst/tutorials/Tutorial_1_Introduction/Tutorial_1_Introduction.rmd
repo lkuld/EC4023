@@ -34,7 +34,7 @@ How do you calculate $5 \times (3+4)$ and $5^{(3+4)}$? Click on 'Hint' if you ar
 5^3
 ```
 
-Basic mathematical operations such as adding and multiplying numbers have an intuitive implementation as shown above, for instance 2+2. The standard way to write a function is, however, 'function(a,b,...)', that is a word followed by arguments inside a bracket and separated by commas. For instance, 'sqrt(x)' calculates the square root of thr number x.
+Basic mathematical operations such as adding and multiplying numbers have an intuitive implementation as shown above, for instance 2+2. The standard way to write a function is, however, 'function(a,b,...)', that is a word followed by arguments inside a bracket and separated by commas. For instance, 'sqrt(x)' calculates the square root of the number x.
 
 What is the square root of 289? Click on 'Solution' to see the correct code. 
 
