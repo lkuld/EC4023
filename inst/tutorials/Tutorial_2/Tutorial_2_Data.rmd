@@ -11,13 +11,16 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-#  Organise data
+# Organise data
 
 ## Vectors
 
-*In the last tutorial, we encountered types of data: numbers (1,6, ...) and character strings ('blue', 'five', '5', 'fdbv 47.. df', ...). We organised multiple elements into vectors, that is a collection of elements with an order such that we can access for instance the third element of the vector.*
+*In the last tutorial we encountered two common data types: numbers (e.g., 1, 6, …) and character strings (e.g., "blue", "five", "5", "fdbv 47.. df"). We organised multiple elements into **vectors**—ordered collections where, for example, we can access the third element by its position.*
 
-Below are two vectors, a numeric and  a character vector (the latter indicated by `'` or `"`). If you are not sure what type an R object is, you can type `class()`. In the box below, determine the type of each vector.
+Below are two vectors: a numeric vector and a character vector (the latter indicated by quotes `'` or `"`).  
+If you are not sure what type an R object is, use `class()`.
+
+**Task:** Determine the type of each vector in the box below.
 
 ```{r vec-1, exercise=TRUE}
 
@@ -35,7 +38,7 @@ class(numeric_vector)
 class(character_vector)
 ```
 
-Next, output the third element of each vector using the `vector[3]` notation.
+Next, output the third element of each vector using the `vector[3]` notation. 
 
 ```{r vec-1b, exercise=TRUE}
 
@@ -52,7 +55,8 @@ character_vector[3]
 ```
 
 
-You can combine two vectors or add additional elements using again the function `c()`. Run the following code.
+You can combine two vectors or add additional elements using the function `c()`.  
+Run the following code:  
 
 ```{r vec-2, exercise=TRUE}
 
@@ -65,17 +69,27 @@ numeric_vector_2
 c(numeric_vector, character_vector)
 ```
 
-In the last line, we combined our character and numeric vector. R then automatically converted all numeric elements to character strings. The reason is that vectors can only contain one type of data. While numbers can be converted to character, the reverse is impossible usually. 
+In the last line, we combined our character and numeric vectors. R automatically converted all numeric elements into character strings.  
+This happens because vectors can only contain a single data type. While numbers can be converted to characters, the reverse is usually not possible.  
 
-(This holds true outside of R, for instance 5 can be the name of a room. Importantly, room 5 plus room 3 does not equal room 8. While this seems clear, it is still an often made mistake in statistics: Not everything that has a number should be treated as a number.)
+(This holds true outside of R as well—for instance, *5* can be the name of a room. Importantly, room 5 plus room 3 does not equal room 8. While this may seem obvious, it reflects a common mistake in statistics: not everything that looks like a number should be treated as a number.)
 
 
+## Data frames
 
-## Data.frames
+Typically, we need more than one vector to organise our data.  
+For example, we might want to study the **height** and **age** of a group of children.  
+- The first vector contains the children’s heights in cm, where the first element is the height of child 1, the second element the height of child 2, and so on.  
+- The second vector contains their ages in the same order.  
 
-Typically, we need more than one vector to organise our data. For instance, we might want to study the height and age of a group of children. Our first vector contains the children's height measured in cm, that is the first element is the height of kid 1, 2, and so on. A second vector contains the age of child 1, 2, 3, etc. 
+A straightforward way to organise these observations is to create a **table**:  
+- **Columns** correspond to categories (variables), such as height or age.  
+- **Rows** correspond to the observation units, in this case, the children.  
 
-A straightforward way to organise these observations is to create at table in which the columns correspond to the different categories (variables), that is height or age. The rows correspond to the different observation units, in this case children. In addition, we probably want to add a third column with the name or identifier for each kid. The standard data structure for such a table in R is called `data.frame`. The box below defines and outputs a data frame.
+We may also want to add a third column with the name or identifier for each child.  
+The standard data structure for such a table in R is called a `data.frame`.  
+
+The box below defines and outputs a simple data frame:
 
 
 ```{r data-frame, exercise=TRUE}
@@ -89,18 +103,32 @@ age_height_df <- data.frame(name, age, height)
 age_height_df
 ```
 
-This brings us to a first look at the data we will use for our term project. I have added a cleaned up subset of the Irish property data to this tutorial as a `data.frame`. The `data.frame` is called `limerick_property_df`. 
+This brings us to a first look at the data we will use for our term project.  
+A cleaned-up subset of the Irish property data has been added to this tutorial as a `data.frame` called `limerick_property_df`.  
 
-The `data.frame` consists of three vectors/variables: year, address, and price. Output the names of the variables in the box below using the function `names()`: `names(limerick_property_df)`.
+The `data.frame` consists of three variables (vectors): **year**, **address**, and **price**.  
 
-Then have a look at the whole data by typing the name `limerick_property_df`. (Click on the triangle on the right if you cannot see the price.) 
+**Tasks:**  
+
+1. Output the variable names using the function `names()`:  `names(limerick_property_df)`
+
+2. Display the whole dataset by typing its name: `limerick_property_df`.
+
+
+*(If you cannot see the price column, click on the triangle on the right.)*
+
+
 
 ```{r prop-data, exercise=TRUE}
 
 
 ```
 
-If we want to calculate the mean price, we have to access the vector `price`. One way to do this is the the dollar sign `$` after the name of the `data.frame`. The next box outputs the prices in this way. Change the code to calculate the mean of the vector using the function `mean()`.
+If we want to calculate the mean price, we first need to access the `price` vector.  
+One way to do this is by using the dollar sign `$` after the name of the `data.frame`.  
+
+The box below outputs the prices in this way.  
+Change the code to calculate, save, and print the mean of the vector using the function `mean()`.
 
 ```{r price, exercise=TRUE, eval=TRUE}
 limerick_property_df$price
@@ -112,18 +140,34 @@ mean_price <- mean(limerick_property_df$price)
 mean_price
 ```
 
-A second way to access one or multiple vectors in a `data.frame` is the `[]` notation used before for vectors. Since a `data.frame` has two dimensions (rows and columns), we can subset the `data.frame` in both dimensions: `[row,column]`. For instance, `limerick_property_df[1,2]` gives us the first row of the second column. `limerick_property_df[c(1,2,3,4),1]` gives us the first four rows of the first column. If we leave one dimension empty, all elements are outputed, for instance `limerick_property_df[c(1,2),]` for the first two rows and `limerick_property_df[,3]` for the third column.
+A second way to access one or more vectors in a `data.frame` is by using the square bracket `[]` notation we used earlier for vectors.  
+Since a `data.frame` has two dimensions (rows and columns), we can subset it in both directions: `[row, column]`.  
 
-Complete the code below to output the first two addresses.
+Examples:  
+- `limerick_property_df[1, 2]` returns the first row of the second column.  
+- `limerick_property_df[c(1,2,3,4), 1]` returns the first four rows of the first column.  
+- Leaving one dimension empty selects *all* elements of that dimension:  
+  - `limerick_property_df[c(1,2), ]` gives the first two rows.  
+  - `limerick_property_df[, 3]` gives the third column.  
+
+**Task:** Complete the code below to output the first two addresses.  
 
 ```{r subset, exercise=TRUE}
 limerick_property_df[]
 
 ```
 
-Since our columns have names as we have seen above, we can also access columns by name, for instance `limerick_property_df[,'address']` or `limerick_property_df[c(1,2,3), 'price']`. 
+Since our columns have names, we can also access them directly.  
+For example:  
+- `limerick_property_df[ , 'address']`  
+- `limerick_property_df[c(1,2,3), 'price']`  
 
-Since we often want to access multiple rows, R has a few shortcuts. `a:b` gives us a vector of numbers from a to b, for instance `1:5` is the same as `c(1,2,3,4,5)`. Save the first ten prices in the box below as an object with the name `first_prices`. Then calculate the mean of these prices.
+Because we often want to access multiple rows, R provides shortcuts:  
+- `a:b` creates a vector from *a* to *b*.  
+- For instance, `1:5` is the same as `c(1, 2, 3, 4, 5)`.  
+
+**Task:** Save the first ten prices as an object called `first_prices`.  
+Then calculate the mean of these prices.
 
 ```{r subset2, exercise=TRUE}
 limerick_property_df[]
@@ -138,7 +182,8 @@ mean(first_prices)
 
 ## Logical constants & Boolean expressions
 
-Our property `data.frame` contains observations from multiple years. Use the function `table()` to see how many observations per year.
+Our property `data.frame` contains observations from multiple years.  
+Use the function `table()` to check how many observations there are per year.  
 
 ```{r obs-year, exercise=TRUE}
 
@@ -150,13 +195,24 @@ table(limerick_property_df$year)
 
 ```
 
-We now want to create a subset of our data that only contains observations from 2020. It is not practicable to just use row numbers for this operation. Instead, we want to use a so called Boolean expression that is a function that outputs `TRUE` when an observation is from 2020 and `FALSE` if not. That is the function creates a vector of the same length as the vector of years in our table that contains only `TRUE` or `FALSE`. These values are a third data type in R the so called logical constants.
+We now want to create a subset of our data that only contains observations from 2020.  
+It is not practical to just use row numbers for this operation. Instead, we use a **Boolean expression**, which produces `TRUE` when an observation meets a condition (e.g., year = 2020) and `FALSE` otherwise.  
+The result is a vector of logical constants (`TRUE`/`FALSE`) with the same length as the vector of years.  
 
-Boolean expressions play a huge role in data work as we will often manipulate or subset data on a condition. The box below illustrates the principle. We have a vector c('apple', 'pear', 'orange') that we want to subset with a `TRUE`/`FALSE` vector. At first directly and then with a Boolean expression. 
+Logical constants are a third data type in R, besides numeric and character data, and play a huge role in data work, since we often manipulate or subset data based on conditions.  
 
-You can use two notations: 1. A double equal sign `fruits == apple` or 2. the word 'in' with percentage signs `fruits %in% apple`. The second notation is more flexible as we can compare our vector of fruits with another vector instead of just a single element, for instance `fruits %in% c('apple', 'orange', 'strawberry')`.
+The box below illustrates the principle.  
+We have a vector of fruits: `c("apple", "pear", "orange")`.  
+We want to subset this vector using a `TRUE`/`FALSE` vector—first directly, and then with a Boolean expression.  
 
-Complete the box below with a Boolean expression that is equivalent to the direct way.
+You can use two notations:  
+1. A double equal sign: `fruits == "apple"`  
+2. The `%in%` operator: `fruits %in% "apple"`  
+
+The second option is more flexible because it allows comparisons with multiple elements, e.g. `fruits %in% c("apple", "orange", "strawberry")`.  
+
+**Task:** Complete the code below with a Boolean expression that is equivalent to the direct way.  
+
 
 ```{r true-fruit, exercise=TRUE}
 fruits <- c('apple', 'pear', 'orange')
@@ -171,9 +227,16 @@ fruits[fruits %in% 'apple']
 
 ```
 
-If you want to inverse a true/false vector you simply place an exclamation mark directly in front: `!vector`. For instance, `!c(TRUE, FALSE, FALSE)` or `!fruits %in% c('apple')`.
+If you want to invert a `TRUE`/`FALSE` vector, simply place an exclamation mark `!` in front of it.  
+For example:  
 
-Let us apply these principles now on the house price data. In the box below create a Boolean expression that outputs true for all years that are equal to 2020. 
+```r
+!c(TRUE, FALSE, FALSE)
+!fruits %in% c("apple")
+```
+
+Now let’s apply these principles to the house price data.
+Create a Boolean expression that outputs `TRUE` for all years equal to 2020.
 
 ```{r true-year, exercise=TRUE}
 
@@ -185,9 +248,15 @@ true_2020 <- limerick_property_df$year %in% 2020 # or limerick_property_df$year 
 true_2020
 ```
 
-We could use this vector to subset our data to contain observations from 2020 only (note the comma after the expression, we want to subset rows here): `data2020 <- limerick_property_df[limerick_property_df$year %in% 2020,]`.
+We could use this vector to subset our data so that it contains only observations from 2020.  
+(Note the comma after the expression: we are subsetting rows here):  
 
-Below, create a subset of `limerick_property_df` that does not contain any observations/rows from 2020 using a Boolean expression. Have a look a few lines above to remember how to negate an expression. 
+```r
+data2020 <- limerick_property_df[limerick_property_df$year %in% 2020, ]
+```
+**Task:**  
+Create a subset of limerick_property_df that excludes all observations from 2020 using a Boolean expression.
+(Remember: you can negate an expression using `!`.)
 
 ```{r subset2020, exercise=TRUE}
 not2020 <- limerick_property_df[,]
@@ -200,11 +269,18 @@ not2020 <- limerick_property_df[condition,] # or limerick_property_df %in% c(201
 not2020
 ```
 
-Your code is often easier to read if you first define the condition and don't write the equation/function directly into the square brackets.
+Your code is often easier to read if you first define the condition rather than writing it directly into the square brackets.  
 
-Besides equality (`==`), there are three more operators: 1. `!=` (does not equal), 2. `>` (larger than) and 3. `<` (smaller than).
+Besides equality (`==`), there are three more useful operators:  
+1. `!=` (does not equal)  
+2. `>` (greater than)  
+3. `<` (less than)  
 
-In the box below calculate the mean year of all properties that sold for less than 200,000. Replace the question marks in the code.
+---
+
+**Task:**  
+Calculate the mean year of all properties that sold for less than 200,000.  
+Replace the question marks in the code below.  
 
 ```{r smallPrices, exercise=TRUE}
 condition <- limerick_property_df$price ???
@@ -217,9 +293,30 @@ condition <- limerick_property_df$price < 200000
 mean(limerick_property_df$year[condition])
 ```
 
-We can combine multiple Boolean expressions using the operator `&` for 'and', for instance `limerick_property_df$price < 200000 & limerick_property_df$year == 2020` is only true if the price is lower than 200k and the year is 2020. The operator `|` stands for 'or. For instance `limerick_property_df$price < 200000 | limerick_property_df$year == 2020` is true if the price is lower than 200k or the year is 2020.
+We can combine multiple Boolean expressions using logical operators:  
 
-In the box below, calculate the mean price for all properties that cost either more than 300,000 or less than 150,000. Replace all questions marks.
+- `&` for **and**  
+  Example:  
+  ```r
+  limerick_property_df$price < 200000 & limerick_property_df$year == 2020
+```
+
+This is `TRUE` only if the price is below 200,000 **and** the year is 2020.
+
+* `|` for **or**
+  Example:
+
+  ```r
+  limerick_property_df$price < 200000 | limerick_property_df$year == 2020
+  ```
+
+  This is `TRUE` if either the price is below 200,000 **or** the year is 2020.
+
+---
+
+**Task:**  
+
+Calculate the mean price for all properties that cost **either more than 300,000 or less than 150,000**.
 
 ```{r eitherPrices, exercise=TRUE}
 condition1 <- ???

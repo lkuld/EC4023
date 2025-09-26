@@ -14,11 +14,27 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ##  Inspect data
 
-The package `EC4023` contains a raw data set of all listings in the Irish Residential Property Price Register in May 2023. 
+The package `EC4023` contains a raw dataset of all listings in the Irish Residential Property Price Register in May 2023.  
 
-Our first goal is to understand the size of the dataset. In the box below, use the functions `length()`, `ncol()` and `nrow()` to understand the dimensions of the dataset, named `may23_df`. As a `data.frame` the length of `may23_df` is the same as the number of columns, while `length(may23_df[,1])` would give us the length of the first column (vector) of the dataset, that is the number of rows.
+Our first goal is to understand the size of this dataset, stored as `may23_df`.  
 
-Then use `head(may23_df)` to see the first rows of the data set. 
+- As a `data.frame`, the **length** of `may23_df` corresponds to the number of columns.  
+- `length(may23_df[, 1])` gives the length of the first column, which is the number of rows.  
+- We can also use `ncol()` and `nrow()` to directly check the number of columns and rows.  
+
+---
+
+**Task:** Use the functions `length()`, `ncol()`, and `nrow()` to explore the dataset.  
+Then use `head(may23_df)` to view the first rows.  
+
+```r
+length(may23_df)        # number of columns
+ncol(may23_df)          # number of columns
+nrow(may23_df)          # number of rows
+length(may23_df[, 1])   # number of rows (length of first column)
+
+head(may23_df)          # view the first rows
+```
 
 ```{r ex-1, exercise=TRUE}
 
@@ -32,30 +48,38 @@ length(may23_df[,1])
 
 ```
 
-Next, use the function `summary()` with the name to of the dataset to obtain a summary of all vectors. You can also apply the function on individual vectors , for instance `summary(may23_df$County)`.
+Next, use the `summary()` function on the dataset to obtain a summary of all variables.  
+You can also apply it to individual vectors, for example `summary(may23_df$County)`.
 
 ```{r ex-2, exercise=TRUE}
 
 
 ```
 
-The output tells you for all variables the same. The length of each vector is 5174 and that R automatically read in every vector as `character`. This seems appropriate for most of the variables, for example address or county.  Prices, however, should be numeric if we want to calculate statistics such as the mean price. In the following box, we force R to convert prices to a numeric variable.
+The output shows the same info for all variables: each vector has length 5,174 and R read every column as `character`.  
+That’s fine for variables like address or county. **Prices**, however, should be numeric to compute statistics (e.g., the mean).
+
+Below, we force R to convert the `Price` column to numeric.  
+
 
 ```{r ex-3, exercise=TRUE}
 may23_df$price_numeric <- as.numeric(may23_df$Price....)
 head(may23_df$price_numeric)
 ```
 
-However, we receive a warning and all elements are outputted as NA, short for 'Not Available'
+Most likely because the entries in the price column aren’t *pure numbers* — they include non-numeric characters (e.g. the euro symbol `€`, commas as thousands separators, or other text).  
+When you call `as.numeric()` on such strings, R can’t parse them and returns `NA` ('Not Available') with the warning *“NAs introduced by coercion”*.
 
-Looking at the first observations of the original price vector (`head(may23_df$Price....)` or `may23_df$Price....[1:10]`), can you think of a reason why the vector is not numeric?
+You can confirm by inspecting the first values: `head(may23_df$Price....)` or `may23_df$Price....[1:10]`
 
 ```{r ex-4, exercise=TRUE}
 
 
 ```
 
-R is rightfully conservative here: Since the original price data contains nun-numeric characters (a character not recognised in my encoding and a comma), it did not convert these to numeric values. If we think, these non-numeric values are safe to remove, we can, however, proceed. We will look, therefore, on how to clean the data.
+R is (rightly) conservative here: since the original price data contains non-numeric characters (a euro sign or unrecognised symbol in your encoding and commas as thousands separators), it won’t convert to numeric and instead returns `NA`.  
+If you decide these non-numeric characters are safe to remove, you can proceed by **cleaning** the data.
+
 
 ## Clean data
 
@@ -67,9 +91,11 @@ If we try to extract years from a text, '[0-9]{4}' would match any four digit nu
 
 As another example, '1[89][0-9]{2}' matches any number between 1800 and 1999. The expression can be read as follows: first a '1', then a 8 or 9, then two numbers between 0 and 9.
 
-Other regular explression options include the beginning of a character string, a new line, or specific pattern (not) to follow. A great resource to look up options and explore is the website https://www.regular-expressions.info.
+Other regular expression options include the beginning of a character string, a new line, or specific pattern (not) to follow. A great resource to look up options and explore is the website https://www.regular-expressions.info.
 
-To use regular expressions in R, we will use the functions of the package `stringr`. The package provides functionality that simplifies dealing with text patterns. For instance, `str_detect(string, pattern)` outputs `TRUE` if the pattern is found in the string and `FALSE` otherwise. In the box below, can you change the function such that all elements are matched?
+To use regular expressions in R, we will use the functions of the package `stringr`. The package provides functionality that simplifies dealing with text patterns. For instance, `str_detect(string, pattern)` outputs `TRUE` if the pattern is found in the string and `FALSE` otherwise. 
+
+**Task:** Modify the code so that all elements are matched (all `TRUE`).
 
 ```{r ex-5, exercise=TRUE}
 fruits <- c('apple', 'Apple')
@@ -80,9 +106,9 @@ str_detect(string = work,pattern = 'labor')
 
 ```
 
-Returning to the property price register, we now want to extract all numeric values from the original price data. There are two ways to proceed: extract numbers or delete non-numeric characters. Here, we will implement the second approach. We will use the function `str_remove_all(string, pattern)` from the `stringr` package to delete all non-numeric characters. To match a non-numeric characters we use the negation pattern '[^notThese]'. The ^ changes the meaning of the hard bracket [] to none of the following characters, that is n, o, t, T, h, e, s' in the example. More usefully, [^0-9] matches any non-numeric character.
+Returning to the property price register, we want to **delete all non-numeric characters** from the original price data and then convert to numeric.  
+With `stringr::str_remove_all()`, the pattern `[^0-9]` matches any character that is **not** a digit (0–9) due to the ^ symbol in front, so it strips €, commas, spaces, etc.
 
-Therefore, we can remove all non-numeric elements from the price data as follows.
 
 ```{r ex-6, exercise=TRUE}
 may23_df$price_clean <- str_remove_all(string = may23_df$Price...., pattern = '[^0-9]')
@@ -97,7 +123,14 @@ Can you use the same approach to extract all house numbers from the addresses? I
 
 You might have noticed the awkward variable names generated by R. The function `names()` tells you all names associated with an object. While you should be careful, you can also change the variable names this way. For example, we could quickly remove (multiple) dots at the end of a name using `names(may23_df) <- str_remove(names(may23_df), '[.]+$')`.
 
-'[.]+$' looks complicated:  First we put the dot into hard brackets (or alternatively escape it with a '\') because '.' is a special regular expression that matches any character. Next the plus sign signifies that the preceding character (the dot) can be matched once or multiple times. Finally, the dollar sign signifies the end of a string as we only want to remove dots at the end of a name. 
+Why does the pattern '[.]+$' work? 
+
+  * `.` is a special regex character that matches *any* character.
+To match a literal dot, we either place it in brackets `[.]` or escape it as `\.`.
+* `+` means “one or more” of the preceding token (here, the dot).
+* `$` anchors the match to the **end** of the string, so only trailing dots are removed.
+
+Hence, `"[.]+$"` means: *match one or more literal dots at the end of the string*.
 
 ```{r ex-7, exercise=TRUE}
 names(may23_df)
@@ -105,7 +138,10 @@ names(may23_df) <- str_remove(names(may23_df), '[.]+$')
 names(may23_df)
 ```
 
-Can you use regular expression to extract all years from the date vector using the function `str_extract(string, pattern)`? Hint: the name changes made above are not carried over. If you are stuck, matching years was discussed a few lines up.
+
+**Task:** 
+Use regular expression to extract all years from the date vector using the function `str_extract(string, pattern)`. 
+Hint: the name changes made above are not carried over. If you are stuck, look up how to match years a few lines up.
 
 ```{r ex-8, exercise=TRUE}
 
@@ -120,7 +156,7 @@ You could also extract day and month this way, however, there are easier options
 
 ## Dates
 
-Another option to deal with the date vector is to use the built-in date format (there are alternative options using packages). 
+An option to deal with the date vector is to use the built-in date format (there are alternative options using packages). 
 
 Have a look at the help option of the function `as.Date()` (type `?as.Date`). In the help article, we see that we can specify the date format in case that R does not output our dates properly. 
 
